@@ -20,7 +20,7 @@ export const ResetPassword = () => {
 
     const collectData = async () => {
         console.warn( password);
-        let result = await fetch("http://localhost:8000/api/auth/register", {
+        let result = await fetch("http://localhost:8000/api/auth/register", { // change
             method: 'POST',
             body: JSON.stringify({ password }),
             headers: {

@@ -31,7 +31,7 @@ export const Login = () => {
         console.warn(email, password);
         let result = await fetch("https://virtual-surgery.onrender.com/api/auth/login", {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ Email:email, Password:password }),
             headers: {
                 'Content-Type': 'application/json'
             }

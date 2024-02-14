@@ -7,6 +7,8 @@ import { MdEmail,MdSubtitles } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { UseDispatch } from 'react-redux';
 
+import axios from 'axios';
+
 export const Signup=()=>{
     
     const[fname,setFName]=useState("");
@@ -21,16 +23,28 @@ export const Signup=()=>{
     const navigate=useNavigate();
     const collectData=async()=>{
         console.warn(fname,lname,uname,email,age,gender,title,specialist,password);
-        let result= await fetch("https://virtual-surgery.onrender.com/api/auth/register",{
-            method:'POST',
-            body:JSON.stringify({fname,lname,uname,email,age,gender,title,specialist,password}),
-            headers:{
-                'Content-Type':'application/json'
-            }
-        });
-        result= await result.json();
-        console.warn(result);
-        navigate('/')
+        const response = await axios.post(
+         "https://virtual-surgery.onrender.com/api/auth/register",
+         {
+          FirstName: fname,
+          LastName: lname,
+          UserName: uname,
+          Email: email,
+          Age: age,
+          Gender: gender,
+          Title: title,
+          Specialist: specialist,
+          Password: password,
+         },
+         {
+          headers: {
+           "Content-Type": "application/json",
+          },
+         }
+        );
+
+        console.warn(response.data);
+        navigate("/");
     }
 
     return (
